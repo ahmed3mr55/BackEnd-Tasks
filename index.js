@@ -4,7 +4,6 @@ const connectDB = require("./routes/db");
 const app = express();
 const cors = require("cors");
 const { verifyToken } = require("./routes/verifyToken");
-require("./routes/checkSubUser");
 const http = require("http");
 const socketIo = require("socket.io");
 const xss = require("xss-clean");
