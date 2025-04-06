@@ -51,7 +51,6 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/task", verifyToken, require("./routes/task"));
 app.use("/api/pay", verifyToken, require("./routes/pay"));
 app.use("/api/user", verifyToken, require("./routes/user"));
-app.use("/api/admin/plan", verifyToken, require("./routes/admin/plan"));
 
 
 server.listen(PORT, () => {
