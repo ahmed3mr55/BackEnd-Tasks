@@ -4,6 +4,7 @@ const connectDB = require("./routes/db");
 const app = express();
 const cors = require("cors");
 const { verifyToken } = require("./routes/verifyToken");
+require("./routes/checkSubUser");
 const http = require("http");
 const socketIo = require("socket.io");
 const xss = require("xss-clean");
@@ -15,7 +16,7 @@ app.use(express.json());
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://front-end-tasks-peach.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE"],
     },
 });
