@@ -11,12 +11,12 @@ const xss = require("xss-clean");
 
 // middleware
 app.use(cors());
-app.use(xss());
 app.use(express.json());
+app.use(xss());
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: "https://front-end-tasks-peach.vercel.app",
+        origin: "*",
         methods: ["GET", "POST", "PUT", "DELETE"],
     },
 });
