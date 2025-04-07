@@ -16,7 +16,7 @@ app.use(xss());
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: "*",
+        origin: "https://front-end-tasks-peach.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE"],
     },
 });
