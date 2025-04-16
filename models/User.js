@@ -41,6 +41,16 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    limitTasks: {
+        type: Number,
+        required: true,
+        default: 5
+    },
+    offerTasks: {
+        type: Number,
+        required: true,
+        default: 5
+    },
     tasksCompleted: {
         type: Number,
         required: true,
