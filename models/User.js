@@ -1,3 +1,4 @@
+const { required } = require("joi");
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
@@ -56,6 +57,11 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
+    payTasksPlan: {
+        type: String,
+        enum: ["small", "medium", "large"],
+        default: null,
+    }
 })
 
 const User = mongoose.model("User", userSchema);

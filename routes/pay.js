@@ -53,6 +53,7 @@ router.post("/mood", async (req, res) => {
 
     if (["small", "medium", "large"].includes(mood)) {
       userToUpdate.limitTasks += limitTasks[mood];
+      userToUpdate.payTasksPlan = mood;
       userToUpdate.save();
       return res.status(200).json({
         message: "Payment processed successfully",

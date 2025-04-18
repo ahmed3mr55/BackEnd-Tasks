@@ -4,8 +4,7 @@ const { Task } = require("../models/Task");
 const { User } = require("../models/User");
 const Joi = require("joi");
 const crypto = require("crypto");
-const algorithm = "aes-256-gcm"; // نوع التشفير
-
+const algorithm = "aes-256-gcm"; // Encryption algorithm
 const key = crypto.scryptSync(process.env.CRYPTO_KEY, "salt", 32); // Key encryption 32 bytes
 
 // Encrypt text
@@ -308,5 +307,18 @@ router.put("/status/:id", async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 });
+
+// get history payment 
+router.get("/packageHistory", async (req, res) => {
+  const user = req.user;
+  if (!user) return res.status(404).json({ message: "User not found" });
+  try {
+    const findUser = await User.findById(user.id);
+    if (!findUser) return res.status(404).json({ message: "User not found" });
+      return res.status(200).json({ payTasksPlan: findUser.payTasksPlan });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+})
 
 module.exports = router;
