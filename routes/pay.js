@@ -64,7 +64,7 @@ router.post("/mood", async (req, res) => {
       userToUpdate.subscriptionEndDate = new Date(
         Date.now() + 30 * 24 * 60 * 60 * 1000
       );
-      userToUpdate.limitTasks = limitTasks[mood];
+      userToUpdate.limitTasks += limitTasks[mood];
       await userToUpdate.save();
       return res.status(200).json({
         message: "Payment processed successfully",
