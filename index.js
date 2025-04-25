@@ -6,6 +6,7 @@ const cors = require("cors");
 const { verifyToken } = require("./routes/verifyToken");
 require("./routes/checkSubUser");
 const xss = require("xss-clean");
+const { checkSubscription } = require("./middlewares/checkSubscription");
 
 
 // middleware
@@ -18,9 +19,10 @@ connectDB();
 
 // Routes
 app.use("/api/auth", require("./routes/auth"));
-app.use("/api/task", verifyToken, require("./routes/task"));
+app.use("/api/task", verifyToken, checkSubscription, require("./routes/task"));
 app.use("/api/pay", verifyToken, require("./routes/pay"));
 app.use("/api/user", verifyToken, require("./routes/user"));
+app.use("/api/admin/code", verifyToken, require("./routes/admin/code"));
 
 
 app.listen(PORT, () => {

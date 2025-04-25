@@ -31,7 +31,7 @@ router.post("/login", async (req, res) => {
             return res.status(401).json({ message: "Invalid password" });
         }
         // Generate JWT token
-        const token = jwt.sign({ id: user._id, mood: user.mood }, process.env.SECRET_KEY, { expiresIn: "30d" });
+        const token = jwt.sign({ id: user._id, mood: user.mood, isAdmin: user.isAdmin }, process.env.SECRET_KEY, { expiresIn: "30d" });
 
         return res.status(200).json({ message: "Login successful", token, userId: user._id });
     } catch (error) {
@@ -70,7 +70,7 @@ router.post("/register", async (req, res) => {
         })
         await user.save();
         // Generate JWT token
-        const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: "30d" });
+        const token = jwt.sign({ id: user._id, mood: user.mood, isAdmin: user.isAdmin }, process.env.SECRET_KEY, { expiresIn: "30d" });
         // Send token in the response
         return res.status(200).json({ message: "Registration successful", token, userId: user._id });
     } catch (error) {

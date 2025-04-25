@@ -61,7 +61,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["small", "medium", "large"],
         default: null,
-    }
+    },
+    lastTaskReset: {
+        type: Date
+    },
 })
 
 const User = mongoose.model("User", userSchema);
