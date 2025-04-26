@@ -3,8 +3,7 @@ require("dotenv").config();
 const connectDB = require("./routes/db");
 const app = express();
 const cors = require("cors");
-const { verifyToken } = require("./routes/verifyToken");
-require("./routes/checkSubUser");
+const { verifyToken } = require("./middlewares/verifyToken");
 const xss = require("xss-clean");
 const { checkSubscription } = require("./middlewares/checkSubscription");
 

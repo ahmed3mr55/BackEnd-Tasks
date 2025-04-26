@@ -137,6 +137,21 @@ router.get("/code/:code", async (req, res) => {
   }
 });
 
+// get all codes
+router.get("/codes", async (req, res) => {
+  const user = req.user;
+  if (!user) return res.status(404).json({ message: "User not found" });
+  try {
+    const codes = await Code.find({});
+    if (!codes || codes.length === 0) {
+      return res.status(404).json({ message: "No codes found" });
+    }
+    return res.status(200).json({ codes });
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+})
+
 router.post("/redeem", async (req, res) => {
   const user = req.user;
   if (!user) return res.status(404).json({ message: "User not found" });
